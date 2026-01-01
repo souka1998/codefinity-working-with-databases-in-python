@@ -1,0 +1,23 @@
+import sqlite3
+
+conn = sqlite3.connect('mydatabase.db')  # create the database 
+cursor = conn.cursor()
+
+# Create the `users` table with fields
+cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER, user_name TEXT, email TEXT, password TEXT)")
+
+# Insert a record into the `users` table
+cursor.execute("INSERT INTO users (id, user_name, email, password) VALUES (?, ?, ?, ?)", (1, "Alex", "AlexMain@gmail.com", "ZXCV2000"))
+
+# Update the record
+query = "UPDATE users SET email='new@gmail.com' WHERE id= 1"
+cursor.execute(query)
+
+# Execute select query
+cursor.execute("SELECT * FROM users")
+
+data = cursor.fetchall()
+print(data)
+
+conn.commit()  # save changes 
+conn.close()  # close the connection
