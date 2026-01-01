@@ -8,11 +8,11 @@ cursor = conn.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS articles (id INTEGER PRIMARY KEY, title TEXT, content TEXT, author TEXT)")
 
 # SQL query to insert a record into the `articles` table
-insert_query = "___"
+insert_query = "INSERT INTO articles(title,content,author)VALUES(?,?,?)"
 
-article_data = ("Python Coding", "Python is a high-level, general-purpose programming language.", "John Doe")
+article_data = ("Python Coding","Python is a high-level, general-purpose programming language.", "John Doe")
 # Execute the SQL query with data
-___.___(insert_query, article_data)
+cursor.execute(insert_query, article_data)
 
 conn.commit()  # save the changes
 conn.close()  # close the connection
